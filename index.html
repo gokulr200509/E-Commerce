@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriCommerce - Agricultural Products</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>🌾 E-Agriculture</h1>
+            </div>
+            <div class="nav-search">
+                <input type="text" id="searchInput" placeholder="Search products...">
+                <button onclick="searchProducts()">🔍</button>
+            </div>
+            <div class="nav-actions">
+                <button id="cartBtn" onclick="showCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+                
+                <div id="userSection" style="display: none;">
+                    <span id="usernameDisplay"></span>
+                   
+                    <button onclick="showOrders()">My Orders</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <h2>Smart Machinery for Smart Farming</h2>
+                <p>Browse curated tractors, rotavators, harvesters and irrigation equipment designed for Indian farms.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">40+</span>
+                        <span class="hero-stat-label">Machinery SKUs</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">8</span>
+                        <span class="hero-stat-label">Core Categories</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">100%</span>
+                        <span class="hero-stat-label">Order Tracking</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <img src="/images/tiger-75-1681798245-1700472656.webp" alt="Tractor in field" />
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content: Filters + Products -->
+    <div class="main-shell">
+        <aside class="sidebar">
+            <h3 class="sidebar-title">Browse by Category</h3>
+            <div class="categories">
+                <button class="category-btn active" onclick="filterByCategory(null)">All</button>
+                <div id="categoryList"></div>
+            </div>
+        </aside>
+        <main class="content">
+            <div class="container">
+                <div id="productsGrid" class="products-grid"></div>
+                <div id="loading" class="loading">Loading products...</div>
+                <div id="pagination" class="pagination"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Partner / Reference Links (20 links using local images) -->
+    <section class="partners-section">
+        <h2 class="partners-title">Agriculture Machinery References</h2>
+        <div class="partners-grid">
+            <!-- 20 links will reuse 10 local images in a loop -->
+            <a href="https://www.tractorjunction.com/" target="_blank" class="partner-card">
+                <img src="/images/tiger-75-1681798245-1700472656.webp" alt="Tractor Junction" class="partner-image">
+                <div class="partner-label">Tractor Junction</div>
+            </a>
+            <a href="https://www.khetigaadi.com/" target="_blank" class="partner-card">
+                <img src="/images/Swaraj-855-FE1732352123_zh8kn4U3B.webp" alt="Khetigaadi" class="partner-image">
+                <div class="partner-label">KhetiGaadi</div>
+            </a>
+            <a href="https://www.agrostar.in/" target="_blank" class="partner-card">
+                <img src="/images/Kubota-MU4501-4WD1735902101_U232v14Z4.webp" alt="AgroStar" class="partner-image">
+                <div class="partner-label">AgroStar</div>
+            </a>
+            <a href="https://www.indiamart.com/agriculture-machinery/" target="_blank" class="partner-card">
+                <img src="/images/KhedutDiscHarrow7x7_0_1468216497.webp" alt="IndiaMART Agri Machinery" class="partner-image">
+                <div class="partner-label">IndiaMART Agri Machinery</div>
+            </a>
+            <a href="https://www.tradeindia.com/agriculture-machinery.html" target="_blank" class="partner-card">
+                <img src="/images/LemkenMouldBoardPlough2MBPlough_0_1460008779.webp" alt="TradeIndia Agri Machinery" class="partner-image">
+                <div class="partner-label">TradeIndia Agri Machinery</div>
+            </a>
+            <a href="https://www.mahindratractor.com/" target="_blank" class="partner-card">
+                <img src="/images/john-deere-technology-solution-banner.webp" alt="Mahindra Tractors" class="partner-image">
+                <div class="partner-label">Mahindra Tractors</div>
+            </a>
+            <a href="https://www.tafe.com/" target="_blank" class="partner-card">
+                <img src="/images/ShaktimanRotaryTillerU-seriesU84_0_1459771599.webp" alt="TAFE" class="partner-image">
+                <div class="partner-label">TAFE</div>
+            </a>
+            <a href="https://www.sonalika.com/" target="_blank" class="partner-card">
+                <img src="/images/agritechnica-highlight.png" alt="Sonalika" class="partner-image">
+                <div class="partner-label">Sonalika</div>
+            </a>
+            <a href="https://www.deere.co.in/" target="_blank" class="partner-card">
+                <img src="/images/logo512.png" alt="John Deere India" class="partner-image">
+                <div class="partner-label">John Deere India</div>
+            </a>
+            <a href="https://www.vsttillers.com/" target="_blank" class="partner-card">
+                <img src="/images/blog-11-detail-page-blog-thumbnails.webp" alt="VST Tillers" class="partner-image">
+                <div class="partner-label">VST Tillers</div>
+            </a>
+
+            <!-- Repeat images for remaining 10 links -->
+            <a href="https://www.agcocorp.com/" target="_blank" class="partner-card">
+                <img src="/images/tiger-75-1681798245-1700472656.webp" alt="AGCO" class="partner-image">
+                <div class="partner-label">AGCO</div>
+            </a>
+            <a href="https://www.cnhindustrial.com/" target="_blank" class="partner-card">
+                <img src="/images/Swaraj-855-FE1732352123_zh8kn4U3B.webp" alt="CNH Industrial" class="partner-image">
+                <div class="partner-label">CNH Industrial</div>
+            </a>
+            <a href="https://www.kubota.com/" target="_blank" class="partner-card">
+                <img src="/images/Kubota-MU4501-4WD1735902101_U232v14Z4.webp" alt="Kubota" class="partner-image">
+                <div class="partner-label">Kubota Global</div>
+            </a>
+            <a href="https://www.claas.com/" target="_blank" class="partner-card">
+                <img src="/images/KhedutDiscHarrow7x7_0_1468216497.webp" alt="CLAAS" class="partner-image">
+                <div class="partner-label">CLAAS</div>
+            </a>
+            <a href="https://www.agriexpo.online/" target="_blank" class="partner-card">
+                <img src="/images/LemkenMouldBoardPlough2MBPlough_0_1460008779.webp" alt="AgriExpo" class="partner-image">
+                <div class="partner-label">AgriExpo</div>
+            </a>
+            <a href="https://www.farmequip.org/" target="_blank" class="partner-card">
+                <img src="/images/john-deere-technology-solution-banner.webp" alt="FarmEquip" class="partner-image">
+                <div class="partner-label">FarmEquip</div>
+            </a>
+            <a href="https://www.machinerypete.com/" target="_blank" class="partner-card">
+                <img src="/images/ShaktimanRotaryTillerU-seriesU84_0_1459771599.webp" alt="Machinery Pete" class="partner-image">
+                <div class="partner-label">Machinery Pete</div>
+            </a>
+            <a href="https://www.alibaba.com/agriculture-machinery" target="_blank" class="partner-card">
+                <img src="/images/agritechnica-highlight.png" alt="Alibaba Agri Machinery" class="partner-image">
+                <div class="partner-label">Alibaba Agri Machinery</div>
+            </a>
+            <a href="https://www.made-in-china.com/agriculture-machinery/" target="_blank" class="partner-card">
+                <img src="/images/logo512.png" alt="Made-in-China Agri Machinery" class="partner-image">
+                <div class="partner-label">Made-in-China Agri Machinery</div>
+            </a>
+            <a href="https://www.fao.org/home/en" target="_blank" class="partner-card">
+                <img src="/images/blog-11-detail-page-blog-thumbnails.webp" alt="FAO" class="partner-image">
+                <div class="partner-label">FAO</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="productDetail"></div>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+                <button onclick="placeOrder()" class="btn-primary">Place Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+
+
+    <!-- Register Modal -->
+    
+    <!-- Orders Modal -->
+    <div id="ordersModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeOrdersModal()">&times;</span>
+            <h2>My Orders</h2>
+            <div id="ordersList"></div>
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
